@@ -1,3 +1,5 @@
+Smart brain is an app which detects the celebrity present in the image whose URL you submit.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
