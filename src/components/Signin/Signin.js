@@ -6,7 +6,8 @@ class Signin extends React.Component {
 		super(props);
 		this.state = {
 			signinEmail : '',
-			signinPassword : ''
+			signinPassword : '',
+			userValidityDetails : ''
 		}
 	}
 
@@ -20,6 +21,12 @@ class Signin extends React.Component {
 		this.setState( {
 			signinPassword : event.target.value
 		})
+	}
+
+	onInvalidUser = () => {
+		if(!this.state.userValid) {
+			return `Wrong Credentials`
+		}
 	}
 
 	onSubmit = () => {
@@ -36,6 +43,11 @@ class Signin extends React.Component {
 			if(data!=='Invalid Credentials'){
 				this.props.loadUser(data);
 				this.props.onRouteChange('home');
+			}
+			else {
+				this.setState({
+					userValidityDetails : `Invalid Credentials`
+				})
 			}
 		})
 	}
@@ -56,6 +68,9 @@ class Signin extends React.Component {
 					        <input onChange={this.onPasswordChange} className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" />
 					      </div>
 					    </fieldset>
+					    <div className="center red mb2">
+					      {this.state.userValidityDetails}
+					    </div>
 					    <div className="center">
 					      <input onClick={this.onSubmit} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in" />
 					    </div>
